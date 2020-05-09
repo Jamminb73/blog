@@ -17,7 +17,7 @@
 
             <form action="." method="POST" enctype="multipart/form-data"> {% csrf_token %}
                 {{ form.as_p }}
-                <!-- {{ form.media | safe }} -->
+                {{ form.media | safe }}
 
                 <input type="submit" value="Submit">
             </form>
