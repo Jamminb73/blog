@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'landing',
     'accounts',
     'ckeditor',
-    'posts'
+    'posts',
+    'storages'
 ]
 
 MIDDLEWARE = [
