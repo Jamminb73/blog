@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+    <div class="container">
+    
+        {% if user == post.user %}
+
+            <div class="delete">
+                <h1>Are you sure you want to delete?</h1>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content | safe }}</p>
+                  
+
+                <form method="POST"> {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Yes, delete</button>
+                    <a href="{% url 'posts' %}" class="btn btn-saved">Cancel</a>
+                </form>
+            </div>
+        {% else %}
+            <h1>You should not be here</h1>
+        {% endif %}
+</div>
+    
+    
+
+{% endblock content %}

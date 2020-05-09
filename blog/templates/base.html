@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Blog</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="nav">
+        <div>
+            <div class="container">
+                <nav class="main-nav">
+                    <ul class="main-menu">
+                    
+                        <li> <a href="{% url 'home' %}">Home</a> </li>
+                        <li> <a href="{% url 'about' %}">About</a> </li>
+                        <li> <a href="{% url 'contact' %}">Contact</a> </li>
+                        <li> <a href="{% url 'posts' %}">Blog</a> </li>
+
+                        
+                    </ul>
+                        <ul class="right-menu">
+                            {% if user.is_authenticated %}
+                            
+                            <li> <a href="{% url 'create' %}">New Post</a> </li>
+                            <li> <a href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                            <form action="{% url 'logout' %}" method="POST" id="logout">
+                                {% csrf_token %}
+                                <input type="hidden">
+                            </form> </li>                            
+                            
+                            {% else %}                            
+                            
+                            <li> <a href="{% url 'login' %}">Login</a> </li>
+                            <li> <a href="{% url 'register' %}">Register</a> </li>
+                            {% endif %}
+
+                        </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    
+    
+    
+    {% block content %}
+    
+
+
+    {% endblock %}
+
+    <section class="alerts">
+        <div class="alert">
+            <div>
+                <p>
+                    {% include 'partials/_alerts.html' %}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <a href="https://www.jamminsites.com" target="_blank">
+                <p style="color: #93c552;">Created by Jammin sites &copy {% now "Y" %}</p>
+            </a>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>

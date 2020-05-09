@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section id="main">
+    <div class="row dark-overlay">
+
+        <div id="intro">            
+            {% for para in homepara.all %}            
+            <h1>{{ para.title }}</h1>
+            <p> {{ para.body | safe }} </p>            
+            {% endfor %}
+        </div>
+        
+        <div id="recent">
+            <h1>Recent posts!</h1>
+            
+            {% for posts in home_posts %}
+            <a href="{% url 'posts' %}">
+                <h3>{{ posts.title }}</h3>
+            </a>
+            
+            {% endfor %}
+        </div>
+        
+    </div>
+    </section>
+
+
+
+{% endblock  %}

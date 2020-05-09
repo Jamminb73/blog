@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+
+    {% if title %}
+        <h1 class="title">{{ title }}</h1>
+    {% endif %}
+
+{% if user.is_authenticated %}
+
+    <div class="form">
+        <div class="container">
+
+
+            <form action="." method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                {{ form.as_p }}
+                <!-- {{ form.media | safe }} -->
+
+                <input type="submit" value="Submit">
+            </form>
+
+
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock content %}

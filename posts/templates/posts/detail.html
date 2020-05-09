@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <div class="container">
+        <section id="post">
+
+        <div class="post">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="" class="card-img" width="400">
+            {% endif %}
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.content | safe }}</p>
+            <h3>Posted by: {{ post.user }}</h3>
+            <p>{{ post.updated }}</p>
+
+            
+            
+                
+                    {% if user == post.user %}
+                    
+                        <div id="controls">
+                            <div id="update">
+                                
+                                <a href="{% url 'update' post.id %}">
+                                    <input type="submit"  name="update" value="Update" class="btn btn-primary">
+                                </a>
+                            </div>
+                            <div id="delete">
+                                
+                                <a href="{% url 'delete' post.id %}">
+                                    <input type="submit" name="delete" value="Delete" class="btn btn-danger">
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                
+            
+        </div>
+    </section>
+    </div>
+
+
+
+    
+
+{% endblock content %}
